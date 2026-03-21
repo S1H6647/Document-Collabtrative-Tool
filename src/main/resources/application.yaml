@@ -2,13 +2,23 @@ spring:
   application:
     name: RealTimeDocCollab
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL:${DB_URL}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USERNAME}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD}}
   jpa:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  data:
+    redis:
+      #      host: localhost
+      #      port: 6379
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+
+server:
+  port: ${PORT:8080}
 
 jwt:
   secret: ${JWT_SECRET}
