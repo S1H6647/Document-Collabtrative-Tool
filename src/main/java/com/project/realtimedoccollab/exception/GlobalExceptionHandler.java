@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleAccessDenied(AccessDeniedException e) {
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .body(Map.of("error", "Access denied"));
+                .body(Map.of("error", e.getMessage()));
     }
 
     @ExceptionHandler(HandlerMethodValidationException.class)
@@ -65,7 +65,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
     public ResponseEntity<Map<String, String>> handleOptimisticLock(ObjectOptimisticLockingFailureException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(Map.of("error", "Inventory changed by another request. Please retry."));
+                .body(Map.of("error", "Document changed by another request. Please retry."));
     }
 
 }

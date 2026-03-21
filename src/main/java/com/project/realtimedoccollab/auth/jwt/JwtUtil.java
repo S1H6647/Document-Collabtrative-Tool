@@ -36,7 +36,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    String extractEmail(String token) {
+    public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
