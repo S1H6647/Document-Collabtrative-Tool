@@ -1,6 +1,5 @@
 package com.project.realtimedoccollab.auth.user;
 
-import com.project.realtimedoccollab.exception.ResourceNotFoundException;
 import com.project.realtimedoccollab.user.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = userRepository.findUserByEmail(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User with " + username + " not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with " + username + " not found"));
 
         return UserPrincipal.from(user);
     }

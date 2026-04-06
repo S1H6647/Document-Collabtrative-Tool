@@ -19,7 +19,7 @@ public class JwtUtil {
     private String secretKey;
 
     private SecretKey getKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey.trim());
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
